@@ -24,7 +24,6 @@ class RequestHandler {
 
         this.httpContext = new HttpContextImpl(httpRequest, httpResponse);
 
-        //return this.generateDemoResponse();
 
         switch (httpRequest.getMethod()){
             case "GET": handleGetRequest(httpRequest);
@@ -52,16 +51,5 @@ class RequestHandler {
 
             }
         }
-    }
-
-    private byte[] generateDemoResponse() {
-        httpContext.getHttpResponse().setStatus(HttpStatus.OK);
-
-        httpContext.getHttpResponse().addHeader("Content-Type", "text/html");
-        httpContext.getHttpResponse().addHeader("Server", WebConstants.SERVER_NAME + "/" + WebConstants.SERVER_VERSION);
-
-        httpContext.getHttpResponse().setContent(("<h1>Hello from " + WebConstants.SERVER_NAME + " v. " + WebConstants.SERVER_VERSION + "</h1>").getBytes());
-
-        return httpContext.getHttpResponse().getBytes();
     }
 }
